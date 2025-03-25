@@ -1,0 +1,6 @@
+@CleanSpeakAPI_HostAddress = http://localhost:5044
+
+GET {{CleanSpeakAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
