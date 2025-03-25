@@ -1,10 +1,10 @@
 # CleanSpeak API
 ### Wstęp 🚀
 Ten projekt implementuje API do wykrywania wulgaryzmów w tekście, wykorzystując model uczenia maszynowego. Projekt jest zbudowany w oparciu o framework .NET Core i bibliotekę ML.NET.
-
+<!--
 ### Przykład Działania 📊
 Aby zobaczyć przykład działania API, odwiedź stronę: http://cleanspeak.hubertiwan.pl/
-
+-->
 ### Technologie 🛠️
 - **.NET Core**: Framework aplikacji
 - **ML.NET**: Biblioteka do uczenia maszynowego
