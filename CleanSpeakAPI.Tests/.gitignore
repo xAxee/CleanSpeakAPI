@@ -1,0 +1,31 @@
+# Build artefacts
+bin/
+obj/
+TestResults/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# dotCover
+*.dotCover
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Coverage
+coverage*.json
+lcov.info
+
+# OS junk
+.DS_Store
+Thumbs.db

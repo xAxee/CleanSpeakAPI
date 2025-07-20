@@ -1,36 +1,92 @@
-# CleanSpeak API
-### Wstęp 🚀
-Ten projekt implementuje API do wykrywania wulgaryzmów w tekście, wykorzystując model uczenia maszynowego. Projekt jest zbudowany w oparciu o framework .NET Core i bibliotekę ML.NET.
-<!--
-### Przykład Działania 📊
-Aby zobaczyć przykład działania API, odwiedź stronę: http://cleanspeak.hubertiwan.pl/
--->
-### Technologie 🛠️
-- **.NET Core**: Framework aplikacji
-- **ML.NET**: Biblioteka do uczenia maszynowego
-- **Swagger**: Dokumentacja API
+# 🧼 CleanSpeak API
 
-### Struktura Projektu 🗂️
-- **ProfanityController.cs**: Kontroler API odpowiedzialny za wykrywanie wulgaryzmów
-- **ProfanityDetector.cs**: Usługa odpowiedzialna za predykcję modelu ML
-- **ProfanityData.cs**: Modele danych dla modelu ML
-- **Program.cs**: Plik główny aplikacji
+## Opis projektu
+CleanSpeak API to RESTowe API do moderacji tekstu w języku polskim. Wykorzystuje model uczenia maszynowego oparty o **ML.NET** do klasyfikacji tekstu jako:
+- `vulgar` – wulgarny, obraźliwy,
+- `friendly` – przyjazny, pozytywny,
+- `neutral` – neutralny.
 
-### Dokumentacja API 📚
-#### Endpoints
-- **POST /api/Profanity/check**: Sprawdza, czy podany tekst zawiera wulgaryzmy.
-  - Parametry: `text` (ciąg znaków)
-  - Zwraca: `Text`, `IsProfane`, `DetectedProfanities`
-  
-- **POST /api/Profanity/checkList**: Sprawdza listę tekstów pod kątem wulgaryzmów.
-  - Parametry: `texts` (tablica ciągów znaków)
-  - Zwraca: Lista obiektów z `Text`, `IsProfane`, `DetectedProfanities`
+## 🔧 Technologie użyte w projekcie
+- **.NET 6 / ASP.NET Core** – REST API
+- **ML.NET** – trenowanie i użycie modelu ML
+- **Swagger** – dokumentacja interaktywna
+- **C#** – język główny projektu
 
-### Uruchomienie 🚀
-1. Sklonuj repozytorium.
-2. Zainstaluj wymagane pakiety NuGet.
-3. Wypełnij pliki `Data/keywords.txt` i `Data/data.csv` swoimi danymi.
-4. Uruchom aplikację za pomocą `dotnet run`.
+## 📁 Struktura katalogów
+```
+CleanSpeakAPI/
+├── Controllers/ # Kontrolery API
+├── Services/ # Logika moderacji i ML
+├── Models/ # Klasy danych i predykcji
+├── Utils/ # Narzędzia (np. normalizacja tekstu)
+├── Data/data.csv # Dane treningowe
+├── Program.cs # Główna konfiguracja aplikacji
+└── README.md
+```
+## 🚀 Jak uruchomić projekt lokalnie
 
-### Dziękuję za uwagę! 😊
-Jeśli masz jakieś pytania lub chcesz wesprzeć rozwój, zapraszam do kontaktu.
+1. Sklonuj repozytorium:
+   ```bash
+   git clone https://github.com/xAxee/CleanSpeakAPI.git
+   cd CleanSpeakAPI
+   ```
+2. Przygotuj dane treningowe (Data/data.csv) – przykładowy plik już znajduje się w repo.
+3. Zbuduj i uruchom projekt:
+```
+dotnet restore
+dotnet run --project CleanSpeakAPI
+```
+4. Wejdź do interaktywnej dokumentacji:
+```
+https://localhost:8080/api
+```
+## 📨 Endpointy API
+### POST /api/TextModeration/analyze
+#### Opis: Analizuje przesłany tekst i klasyfikuje go jako vulgar, friendly lub neutral.
+
+✅ Przykładowy request:
+```json
+POST /api/TextModeration/analyze
+Content-Type: application/json
+
+{
+  "text": "Dziękuję za Twoją pomoc!"
+}
+```
+🔁 Przykładowa odpowiedź:
+```json
+{
+  "category": "friendly",
+  "probabilities": {
+    "vulgar": 0.01,
+    "friendly": 0.97,
+    "neutral": 0.02
+  }
+}
+```
+🧾 Odpowiedzi HTTP:
+- 200 OK – predykcja udana
+- 400 Bad Request – brak tekstu wejściowego
+- 500 Internal Server Error – błąd serwera
+
+## 🧠 Jak działa model ML
+- Dane wejściowe są najpierw normalizowane (zamiana na małe litery, usunięcie znaków specjalnych).
+- Tekst jest zamieniany na wektory cech (FeaturizeText).
+- Model jest trenowany metodą **LbfgsMaximumEntropy**.
+- Wynik to kategoria oraz rozkład prawdopodobieństw.
+
+## 📊 Dane treningowe
+Plik data.csv zawiera ręcznie przygotowane przykłady dla trzech klas:
+- vulgar: np. "Zamknij się", "Idź do diabła"
+- friendly: np. "Miłego dnia!", "Dziękuję za pomoc"
+- neutral: np. "Dzisiaj pada deszcz", "Oglądałem film wczoraj"
+
+## 📌 TODO
+- Dodanie nowych klas: spam, hejt, ironia
+- Większy zbiór danych
+
+## 🧑‍💻 Autor
+**Hubert Iwan** | [github.com/xAxee](https://github.com/xAxee)
+
+## 📜 Licencja
+Projekt dostępny na licencji MIT.

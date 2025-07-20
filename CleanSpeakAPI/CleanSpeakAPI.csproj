@@ -12,5 +12,13 @@
     <PackageReference Include="Microsoft.ML.AutoML" Version="0.22.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
-
+	
+  <ItemGroup>
+    <None Update="Data\data.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\model.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
