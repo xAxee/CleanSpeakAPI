@@ -1,7 +1,5 @@
 # 🧼 CleanSpeak API
-
-## Opis projektu
-CleanSpeak API to RESTowe API do moderacji tekstu w języku polskim. Wykorzystuje model uczenia maszynowego oparty o **ML.NET** do klasyfikacji tekstu jako:
+CleanSpeak API to REST API do moderacji tekstu w języku polskim. Wykorzystuje model uczenia maszynowego oparty o **ML.NET** do klasyfikacji tekstu jako:
 - `vulgar` – wulgarny, obraźliwy,
 - `friendly` – przyjazny, pozytywny,
 - `neutral` – neutralny.
