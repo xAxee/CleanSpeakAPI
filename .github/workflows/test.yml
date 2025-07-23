@@ -30,4 +30,4 @@ jobs:
       run: dotnet build ./CleanSpeakAPI/CleanSpeakAPI.sln --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test ./CleanSpeakAPI.Tests/CleanSpeakAPI.Tests.csproj --no-build --verbosity normal
+      run: dotnet test ./CleanSpeakAPI.Tests/CleanSpeakAPI.Tests.csproj --configuration Release --verbosity normal
